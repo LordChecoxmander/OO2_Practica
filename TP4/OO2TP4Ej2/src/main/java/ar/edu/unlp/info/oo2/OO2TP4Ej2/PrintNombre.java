@@ -16,6 +16,6 @@ public class PrintNombre extends FileDecorator{
 	public String print() {
 		return super.getNombre().toString();
 	}
-		
+		 
 	
 }
