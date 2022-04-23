@@ -8,22 +8,38 @@ import org.junit.jupiter.api.Test;
 
 public class DatabaseRealAccessTest {
 	
-    private DatabaseAccess database;
-
+//    DatabaseAccess database;
+    DatabaseProxy dbProxy;
+    Cliente cliaut;
+    Cliente cliNot;
+    
     @BeforeEach
     void setUp() throws Exception {
-        this.database = new DatabaseRealAccess();
+    	this.cliaut = new Cliente(3, true);
+    	this.cliNot = new Cliente(3, false);
+//    	this.database = new DatabaseRealAccess();
+        
     }
 
     @Test
-    void testGetSearchResults() {
-        assertEquals(Arrays.asList("Spiderman", "Marvel"), this.database.getSearchResults("select * from comics where id=1"));
-        assertEquals(Collections.emptyList(), this.database.getSearchResults("select * from comics where id=10"));
+    void testGetSearchResultsAut() {
+    	this.dbProxy = new DatabaseProxy(cliaut);
+        assertEquals(Arrays.asList("Spiderman", "Marvel"), this.dbProxy.getSearchResults("select * from comics where id=1"));
+        assertEquals(Collections.emptyList(), this.dbProxy.getSearchResults("select * from comics where id=10"));
     }
 
     @Test
-    void testInsertNewRow() {
-        assertEquals(3, this.database.insertNewRow(Arrays.asList("Patoruzú", "La flor")));
-        assertEquals(Arrays.asList("Patoruzú", "La flor"), this.database.getSearchResults("select * from comics where id=3"));
+    void testInsertNewRowAut() {
+    	this.dbProxy = new DatabaseProxy(cliaut);
+        assertEquals(3, this.dbProxy.insertNewRow(Arrays.asList("Patoruzú", "La flor")));
+        assertEquals(Arrays.asList("Patoruzú", "La flor"), this.dbProxy.getSearchResults("select * from comics where id=3"));
     }
+    
+    @Test
+    void testNotAut() {
+    	this.dbProxy = new DatabaseProxy(cliNot);
+        assertEquals(0, this.dbProxy.insertNewRow(Arrays.asList("Patoruzú", "La flor")));
+        assertEquals(Collections.emptyList(), this.dbProxy.getSearchResults("select * from comics where id=3"));
+    }
+    
 }
