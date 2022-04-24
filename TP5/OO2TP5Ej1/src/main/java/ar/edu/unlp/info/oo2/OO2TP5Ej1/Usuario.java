@@ -5,14 +5,16 @@ import java.util.List;
 public class Usuario {
 	
 	private List<Tema> myMusic;
-	private String name;
 	
+	public void agregarLista(Tema tem) {
+		
 	
-	public String getName() {
-		return name;
 	}
 	
-	
+	public void quitarLista(Tema tem) {
+		
+		
+	}
 	
 	
 	
