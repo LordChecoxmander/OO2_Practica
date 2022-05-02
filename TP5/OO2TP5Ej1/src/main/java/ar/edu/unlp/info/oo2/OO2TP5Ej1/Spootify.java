@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.oo2.OO2TP5Ej1;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Spootify {
 	
@@ -11,8 +12,10 @@ public class Spootify {
 //	itera en autores buscando temas iguales y los retorna
 	public List<Tema> buscarTitulo(Tema tem){
 		
-		this.autores.stream()
-			.
+		return this.autores.stream()
+			.map(a -> a.buscarTituloAutor(tem))
+			.flatMap(l -> l.stream())
+			.collect(Collectors.toList());
 			
 		
 	}

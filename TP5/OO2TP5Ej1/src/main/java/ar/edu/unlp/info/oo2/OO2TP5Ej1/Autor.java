@@ -1,6 +1,9 @@
 package ar.edu.unlp.info.oo2.OO2TP5Ej1;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Autor {
 	
@@ -13,6 +16,18 @@ public class Autor {
 	
 	public List<Album> getAlbums(){
 		return this.albums;
+	}
+	
+//	itera sombre los albums del autor buscando un tema igual, retor na una lista con temas iguales
+	public List<Tema> buscarTituloAutor(Tema tem) {
+		
+		return this.albums.stream()
+				.map(t -> t.buscarTituloAlbum(tem))
+				.flatMap(l -> l.stream())
+				.collect(Collectors.toList());
+				
+		
+					
 	}
 	
 }

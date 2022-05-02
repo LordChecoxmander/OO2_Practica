@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.oo2.OO2TP5Ej1;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Album {
@@ -11,5 +12,11 @@ public class Album {
 		return name;
 	}
 	
-	public 
+	public List<Tema> buscarTituloAlbum(Tema tem){
+		
+		return this.temas.stream().
+					filter(a -> a.getName().equals(tem.getName())).
+					toList();
+	}
+	
 }
