@@ -5,7 +5,7 @@ import java.util.SortedSet;
 
 public class GuiaTelefonica {
 	private SortedSet<String> guia = new TreeSet<String>();
-
+ 
 	public SortedSet<String> getGuia() {
 		return guia;
 	}
@@ -28,5 +28,9 @@ public class GuiaTelefonica {
 //		}
 	}
 	
+	public void eliminarTelefono(String tel) {
+		
+		this.guia.remove(tel);
 	
+	}
 }
